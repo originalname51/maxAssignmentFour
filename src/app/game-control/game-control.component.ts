@@ -18,6 +18,9 @@ export class GameControlComponent implements OnInit {
   }
 
   startGame() {
+    if (this.myIntervalFunction !== undefined ) {
+      clearInterval(this.myIntervalFunction);
+    }
     this.myIntervalFunction = setInterval(() => this.incrementTimer(), 1000);
     console.log('start game is called');
   }
@@ -37,7 +40,18 @@ export class GameControlComponent implements OnInit {
     this.timerNumber = 0;
     this.endGame.emit();
   }
+
+  pauseGame() {
+    console.log('pause game is called');
+    if (this.myIntervalFunction !== undefined ) {
+      clearInterval(this.myIntervalFunction);
+    } else {
+      console.log('attempting to pause undefined interval function');
+    }
+  }
+
   ngOnInit() {
   }
+
 
 }
